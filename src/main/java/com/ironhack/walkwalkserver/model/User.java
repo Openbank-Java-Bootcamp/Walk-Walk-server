@@ -34,7 +34,7 @@ public class User {
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
 
-    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    /*@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Dog> dogs;*/
 
     @ManyToMany(fetch = FetchType.EAGER)

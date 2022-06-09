@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -20,7 +21,7 @@ public class Dog {
     private String description;
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "owner_id")
     private User user;
     @ManyToMany
     @JoinTable(
@@ -28,4 +29,5 @@ public class Dog {
             joinColumns = @JoinColumn(name = "dog_id"),
             inverseJoinColumns = @JoinColumn(name = "activity_id"))
     private List<Activity> dogActivities;
+
 }

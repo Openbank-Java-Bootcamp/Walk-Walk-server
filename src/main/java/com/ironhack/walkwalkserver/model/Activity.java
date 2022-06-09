@@ -1,5 +1,6 @@
 package com.ironhack.walkwalkserver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,8 @@ public class Activity {
     private Long id;
     private String title;
     private String description;
-    @ManyToMany(mappedBy = "dogActivities")
+    private String city;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "dogActivities",  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Dog> dogs;
 }

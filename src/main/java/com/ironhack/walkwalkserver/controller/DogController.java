@@ -1,5 +1,6 @@
 package com.ironhack.walkwalkserver.controller;
 
+import com.ironhack.walkwalkserver.DTO.DogDTO;
 import com.ironhack.walkwalkserver.model.Dog;
 import com.ironhack.walkwalkserver.repository.DogRepository;
 import com.ironhack.walkwalkserver.service.impl.DogService;
@@ -36,13 +37,13 @@ public class DogController {
 
     @PostMapping("/dogs")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addDog(@RequestBody @Valid Dog dog){
+    public void saveDog(@RequestBody @Valid DogDTO dog){
         dogService.saveDog(dog);
     }
 
     @PutMapping("/dogs/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateDog(@PathVariable Long id, @RequestBody @Valid Dog dog){
+    public void updateDog(@PathVariable Long id, @RequestBody @Valid DogDTO dog){
         dogService.update(id, dog);
     }
 
