@@ -12,8 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ActivityDTO {
-    private Long id;
     private String title;
     private String description;
+    private String city;
     private List<Long> dogsId;
 }
