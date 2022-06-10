@@ -15,5 +15,7 @@ public class ActivityDTO {
     private String title;
     private String description;
     private String city;
+    private Long creatorId;
+    private Long assignedId;
     private List<Long> dogsId;
 }

@@ -1,7 +1,9 @@
 package com.ironhack.walkwalkserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +21,16 @@ public class Activity {
     private String title;
     private String description;
     private String city;
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "created_by")
+    private User creator;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="assigned_to")
+    private User assigned;
     @JsonIgnore
     @ManyToMany(mappedBy = "dogActivities",  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Dog> dogs;
