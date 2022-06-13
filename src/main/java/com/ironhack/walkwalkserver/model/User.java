@@ -32,9 +32,14 @@ public class User {
             + "(?:[A-Za-z0-9-]*[A-Za-z0-9])?",
             message = "Provide a valid email address.")
     private String email;
+
     @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{6,}",
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
+
+    @Pattern(regexp = "^[0-9]{9}$",
+            message = "Provide a valid phone number.")
+    private String number;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Dog> dogs;
@@ -42,9 +47,10 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, String number) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.number = number;
     }
 }

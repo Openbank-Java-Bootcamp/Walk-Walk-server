@@ -40,7 +40,7 @@ public class ActivityService implements ActivityServiceInterface {
         }
         Activity newActivity = new Activity();
         newActivity.setTitle(activity.getTitle());
-        newActivity.setDescription(activity.getDescription());
+        newActivity.setType(activity.getType());
         newActivity.setCity(activity.getCity());
         newActivity.setCreator(creator.get());
         newActivity.setAssigned(assigned);
@@ -64,7 +64,7 @@ public class ActivityService implements ActivityServiceInterface {
         Activity activityFromDB = activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
         activityFromDB.setCity(activity.getCity());
         activityFromDB.setTitle(activity.getTitle());
-        activityFromDB.setDescription(activity.getDescription());
+        activityFromDB.setType(activity.getType());
         activityFromDB.setCreator(creator.get());
         activityFromDB.setAssigned(assigned);
         activityFromDB.setDogs(dogRepository.findAllById(activity.getDogsId()));

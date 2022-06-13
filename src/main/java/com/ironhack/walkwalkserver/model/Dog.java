@@ -21,6 +21,7 @@ public class Dog {
     private String size;
     private String dogFriendly;
     private String catFriendly;
+    private String childFriendly;
     private String energy;
     @Lob
     private String image;
