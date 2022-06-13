@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ActivityDTO {
     private String title;
-    private String description;
+    private String type;
     private String city;
     private Long creatorId;
     private Long assignedId;

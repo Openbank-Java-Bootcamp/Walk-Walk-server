@@ -41,6 +41,7 @@ public class DogService implements DogServiceInterface {
         newDog.setSize(dog.getSize());
         newDog.setDogFriendly(dog.getDogFriendly());
         newDog.setCatFriendly(dog.getCatFriendly());
+        newDog.setChildFriendly(dog.getChildFriendly());
         newDog.setEnergy(dog.getEnergy());
         newDog.setUser(user.get());
         newDog.setImage(dog.getImage());
@@ -52,8 +53,10 @@ public class DogService implements DogServiceInterface {
         Dog dogFromDB = dogRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dog not found"));
         dogFromDB.setName(dog.getName());
         dogFromDB.setSize(dog.getSize());
+        dogFromDB.setImage(dog.getImage());
         dogFromDB.setDogFriendly(dog.getDogFriendly());
         dogFromDB.setCatFriendly(dog.getCatFriendly());
+        dogFromDB.setChildFriendly(dog.getChildFriendly());
         dogFromDB.setEnergy(dog.getEnergy());
         dogFromDB.setUser(user.get());
         dogRepository.save(dogFromDB);
