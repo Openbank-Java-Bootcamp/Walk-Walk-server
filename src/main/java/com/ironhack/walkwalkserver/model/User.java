@@ -2,7 +2,7 @@ package com.ironhack.walkwalkserver.model;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -13,7 +13,9 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -34,8 +36,8 @@ public class User {
             message = "Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.")
     private String password;
 
-    /*@OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
-    private List<Dog> dogs;*/
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Dog> dogs;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();

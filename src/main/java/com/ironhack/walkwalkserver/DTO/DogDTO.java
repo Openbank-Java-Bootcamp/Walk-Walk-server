@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import java.util.List;
 
@@ -17,4 +18,9 @@ public class DogDTO {
     private String name;
     private String description;
     private Long userId;
+    private String image;
+    private String size;
+    private String dogFriendly;
+    private String catFriendly;
+    private String energy;
 }

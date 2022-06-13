@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -29,30 +30,31 @@ public class DogService implements DogServiceInterface {
         return dogRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dog not found"));
     }
 
+    public List<Dog> findByUserId(Long userId) {
+        return dogRepository.findByUserId(userId);
+    }
+
     public void saveDog(DogDTO dog) {
         Optional<User> user = userRepository.findById(dog.getUserId());
         Dog newDog = new Dog();
         newDog.setName(dog.getName());
-        newDog.setDescription(dog.getDescription());
+        newDog.setSize(dog.getSize());
+        newDog.setDogFriendly(dog.getDogFriendly());
+        newDog.setCatFriendly(dog.getCatFriendly());
+        newDog.setEnergy(dog.getEnergy());
         newDog.setUser(user.get());
+        newDog.setImage(dog.getImage());
         dogRepository.save(newDog);
-
-
-        /*
-        I have to change the structure for DTO
-        if(dog.getId() != null) {
-            Optional<Dog> optionalDog = dogRepository.findById(dog.getId());
-            if(optionalDog.isPresent())
-                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Dog with id " + dog.getId() + " already exist");
-        }
-        dogRepository.save(dog);*/
     }
 
     public void update(Long id, DogDTO dog) {
         Optional<User> user = userRepository.findById(dog.getUserId());
         Dog dogFromDB = dogRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Dog not found"));
         dogFromDB.setName(dog.getName());
-        dogFromDB.setDescription(dog.getDescription());
+        dogFromDB.setSize(dog.getSize());
+        dogFromDB.setDogFriendly(dog.getDogFriendly());
+        dogFromDB.setCatFriendly(dog.getCatFriendly());
+        dogFromDB.setEnergy(dog.getEnergy());
         dogFromDB.setUser(user.get());
         dogRepository.save(dogFromDB);
     }
