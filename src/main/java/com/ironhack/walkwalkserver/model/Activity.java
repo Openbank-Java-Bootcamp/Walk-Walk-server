@@ -27,10 +27,11 @@ public class Activity {
     @JoinColumn(name= "created_by")
     private User creator;
 
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="assigned_to")
     private User assigned;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "dogActivities",  fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Dog> dogs;

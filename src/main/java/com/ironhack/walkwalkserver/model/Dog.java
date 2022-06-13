@@ -18,11 +18,17 @@ public class Dog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
+    private String size;
+    private String dogFriendly;
+    private String catFriendly;
+    private String energy;
+    @Lob
+    private String image;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User user;
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "dog_activities",

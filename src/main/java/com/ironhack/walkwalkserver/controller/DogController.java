@@ -29,9 +29,15 @@ public class DogController {
         return dogService.findById(dogId);
     }
 
+    @GetMapping("/mydogs/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Dog> getDogByUserId(@PathVariable(name= "userId") Long userId) {
+        return dogService.findByUserId(userId);
+    }
+
     @GetMapping("/dogs")
     @ResponseStatus(HttpStatus.OK)
-    public List<Dog> getDog() {
+    public List<Dog> getAll() {
         return dogRepository.findAll();
     }
 
