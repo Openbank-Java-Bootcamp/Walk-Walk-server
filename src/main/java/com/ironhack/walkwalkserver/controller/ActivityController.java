@@ -1,6 +1,7 @@
 package com.ironhack.walkwalkserver.controller;
 
 import com.ironhack.walkwalkserver.DTO.ActivityDTO;
+import com.ironhack.walkwalkserver.DTO.ActivityWithoutDogsDTO;
 import com.ironhack.walkwalkserver.model.Activity;
 import com.ironhack.walkwalkserver.model.Dog;
 import com.ironhack.walkwalkserver.repository.ActivityRepository;
@@ -52,7 +53,7 @@ public class ActivityController {
 
     @PutMapping("/activities/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateActivity(@PathVariable Long id, @RequestBody @Valid ActivityDTO activity){
+    public void updateActivity(@PathVariable Long id, @RequestBody @Valid ActivityWithoutDogsDTO activity){
         activityService.update(id, activity);
     }
 
