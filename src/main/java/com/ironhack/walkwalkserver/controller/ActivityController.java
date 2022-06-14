@@ -2,6 +2,7 @@ package com.ironhack.walkwalkserver.controller;
 
 import com.ironhack.walkwalkserver.DTO.ActivityDTO;
 import com.ironhack.walkwalkserver.model.Activity;
+import com.ironhack.walkwalkserver.model.Dog;
 import com.ironhack.walkwalkserver.repository.ActivityRepository;
 import com.ironhack.walkwalkserver.service.impl.ActivityService;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,17 @@ public class ActivityController {
     @ResponseStatus(HttpStatus.OK)
     public List<Activity> getAll(){
         return activityRepository.findAll();
+    }
+
+    @GetMapping("/myactivities/{creatorId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Activity> getActivityByCreatorId(@PathVariable(name= "creatorId") Long creatorId) {
+        return activityService.findByCreatorId(creatorId);
+    }
+    @GetMapping("/chosenactivities/{assignedId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Activity> getActivityByAssignedId(@PathVariable(name= "assignedId") Long assignedId) {
+        return activityService.findByAssignedId(assignedId);
     }
 
     @PostMapping("/activities")

@@ -32,6 +32,14 @@ public class ActivityService implements ActivityServiceInterface {
     public Activity findById(Long id){
         return activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
     }
+
+    public List<Activity> findByCreatorId(Long creatorId) {
+        return activityRepository.findByCreatorId(creatorId);
+    }
+    public List<Activity> findByAssignedId(Long assignedId) {
+        return activityRepository.findByAssignedId(assignedId);
+    }
+
     public void saveActivity(ActivityDTO activity){
         Optional<User> creator = userRepository.findById(activity.getCreatorId());
         User assigned = null;
