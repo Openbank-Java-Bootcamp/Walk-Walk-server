@@ -14,5 +14,6 @@ public class ActivityWithoutDogsDTO {
     private String city;
     private Long creatorId;
     private Long assignedId;
+    private boolean isChosen = false;
 
 }

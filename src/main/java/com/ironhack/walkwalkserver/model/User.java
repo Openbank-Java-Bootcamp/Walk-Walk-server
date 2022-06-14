@@ -24,8 +24,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Provide a name.")
-    private String name;
+    @NotEmpty(message = "Provide a username.")
+    private String username;
     @Pattern(regexp = "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
             + "[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
             + "(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9]"
@@ -47,8 +47,8 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    public User(String name, String email, String password, String number) {
-        this.name = name;
+    public User(String username, String email, String password, String number) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.number = number;

@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserVerifyDTO {
     private String id;
-    private String name;
+    private String username;
 }

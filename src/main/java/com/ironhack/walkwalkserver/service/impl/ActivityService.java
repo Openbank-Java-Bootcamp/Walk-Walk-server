@@ -66,9 +66,11 @@ public class ActivityService implements ActivityServiceInterface {
 
     public void update(Long id, ActivityWithoutDogsDTO activity){
         Optional<User> creator = userRepository.findById(activity.getCreatorId());
+        boolean election = !activity.isChosen();
         User assigned = null;
         if(activity.getAssignedId() != null){
             assigned = userRepository.findById(activity.getAssignedId()).get();
+            activity.isChosen();
         }
         Activity activityFromDB = activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
         activityFromDB.setCity(activity.getCity());
@@ -76,11 +78,21 @@ public class ActivityService implements ActivityServiceInterface {
         activityFromDB.setType(activity.getType());
         activityFromDB.setCreator(creator.get());
         activityFromDB.setAssigned(assigned);
+        activityFromDB.setChosen(election);
         activityRepository.save(activityFromDB);
     }
 
     public void deleteActivity(Long id){
         Activity activityFromDB = activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
+        List<Dog> dogs = activityFromDB.getDogs();
+        for(Dog dog : dogs){
+            List<Activity> dogActivities = dog.getDogActivities();
+            dogActivities.remove(activityFromDB);
+            dog.setDogActivities(dogActivities);
+            dogRepository.save(dog);
+        }
+        activityFromDB.setDogs(null);
+        activityRepository.save(activityFromDB);
         activityRepository.deleteById(id);
     }
 }
