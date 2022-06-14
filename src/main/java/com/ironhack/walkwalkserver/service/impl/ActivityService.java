@@ -1,6 +1,7 @@
 package com.ironhack.walkwalkserver.service.impl;
 
 import com.ironhack.walkwalkserver.DTO.ActivityDTO;
+import com.ironhack.walkwalkserver.DTO.ActivityWithoutDogsDTO;
 import com.ironhack.walkwalkserver.model.Activity;
 import com.ironhack.walkwalkserver.model.Dog;
 import com.ironhack.walkwalkserver.model.User;
@@ -63,7 +64,7 @@ public class ActivityService implements ActivityServiceInterface {
         }
     }
 
-    public void update(Long id, ActivityDTO activity){
+    public void update(Long id, ActivityWithoutDogsDTO activity){
         Optional<User> creator = userRepository.findById(activity.getCreatorId());
         User assigned = null;
         if(activity.getAssignedId() != null){
@@ -75,7 +76,6 @@ public class ActivityService implements ActivityServiceInterface {
         activityFromDB.setType(activity.getType());
         activityFromDB.setCreator(creator.get());
         activityFromDB.setAssigned(assigned);
-        activityFromDB.setDogs(dogRepository.findAllById(activity.getDogsId()));
         activityRepository.save(activityFromDB);
     }
 
