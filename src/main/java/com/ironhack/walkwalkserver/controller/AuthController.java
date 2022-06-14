@@ -35,7 +35,7 @@ public class AuthController {
     public String verifyToken(Authentication authentication) {
         String email = (String) authentication.getPrincipal();
         User userFromDb = userRepository.findByEmail(email);
-        UserVerifyDTO userVerifyDTO = new UserVerifyDTO(userFromDb.getId().toString(),userFromDb.getName());
+        UserVerifyDTO userVerifyDTO = new UserVerifyDTO(userFromDb.getId().toString(),userFromDb.getUsername());
         Gson gson = new Gson();
         String userDetails = gson.toJson(userVerifyDTO);
         return userDetails;

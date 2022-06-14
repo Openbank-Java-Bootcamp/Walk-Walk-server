@@ -21,13 +21,14 @@ public class Activity {
     private String title;
     private String type;
     private String city;
+    private boolean isChosen = false;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "created_by")
     private User creator;
 
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="assigned_to")
     private User assigned;

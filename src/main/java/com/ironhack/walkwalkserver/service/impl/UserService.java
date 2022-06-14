@@ -32,8 +32,8 @@ public class UserService implements UserServiceInterface, UserDetailsService { /
     private RoleRepository roleRepository;
 
     public User saveUser(User userSignupDTO) {
-        log.info("Saving a new user {} inside of the database", userSignupDTO.getName());
-        User user = new User(userSignupDTO.getName(), userSignupDTO.getEmail(), userSignupDTO.getPassword(), userSignupDTO.getNumber());
+        log.info("Saving a new user {} inside of the database", userSignupDTO.getUsername());
+        User user = new User(userSignupDTO.getUsername(), userSignupDTO.getEmail(), userSignupDTO.getPassword(), userSignupDTO.getNumber());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
