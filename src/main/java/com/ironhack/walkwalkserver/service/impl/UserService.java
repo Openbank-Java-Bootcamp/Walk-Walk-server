@@ -1,26 +1,30 @@
 package com.ironhack.walkwalkserver.service.impl;
 
 
+
 import com.ironhack.walkwalkserver.model.User;
 import com.ironhack.walkwalkserver.repository.RoleRepository;
 import com.ironhack.walkwalkserver.repository.UserRepository;
 import com.ironhack.walkwalkserver.service.interfaces.UserServiceInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
-public class UserService implements UserServiceInterface, UserDetailsService { //UserDetailsService builded by springSecurity
+public class UserService implements UserServiceInterface, UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -59,4 +63,14 @@ public class UserService implements UserServiceInterface, UserDetailsService { /
 
         }
     }
+
+    /*public void update(Long id, int rating) {
+
+        User userFromDB = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        userFromDB.getRating().setNumVotes(userFromDB.getRating().getNumVotes()+1);
+        userFromDB.getRating().setTotalScore(userFromDB.getRating().getTotalScore()+rating);
+        userFromDB.getRating().setAverage(userFromDB.getRating().getTotalScore() / userFromDB.getRating().getNumVotes());
+
+        userRepository.save(userFromDB);
+    }*/
 }
