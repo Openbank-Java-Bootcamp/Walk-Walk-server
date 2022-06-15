@@ -41,11 +41,16 @@ public class User {
             message = "Provide a valid phone number.")
     private String number;
 
+    /*@Embedded
+    private Rating rating;*/
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Dog> dogs;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
+
 
     public User(String username, String email, String password, String number) {
         this.username = username;
