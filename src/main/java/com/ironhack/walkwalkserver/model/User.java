@@ -42,7 +42,7 @@ public class User {
     private String number;
 
     /*@Embedded
-    private Rating rating;*/
+    private Rating rating= new Rating(0,0,0);*/
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Dog> dogs;

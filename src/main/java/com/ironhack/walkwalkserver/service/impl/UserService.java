@@ -2,6 +2,7 @@ package com.ironhack.walkwalkserver.service.impl;
 
 
 
+import com.ironhack.walkwalkserver.model.Rating;
 import com.ironhack.walkwalkserver.model.User;
 import com.ironhack.walkwalkserver.repository.RoleRepository;
 import com.ironhack.walkwalkserver.repository.UserRepository;
@@ -67,10 +68,11 @@ public class UserService implements UserServiceInterface, UserDetailsService {
     /*public void update(Long id, int rating) {
 
         User userFromDB = userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-        userFromDB.getRating().setNumVotes(userFromDB.getRating().getNumVotes()+1);
-        userFromDB.getRating().setTotalScore(userFromDB.getRating().getTotalScore()+rating);
-        userFromDB.getRating().setAverage(userFromDB.getRating().getTotalScore() / userFromDB.getRating().getNumVotes());
-
+        Rating newRating = userFromDB.getRating();
+        newRating.setNumVotes(newRating.getNumVotes()+1);
+        newRating.setTotalScore(newRating.getTotalScore()+rating);
+        newRating.setAverage(newRating.getTotalScore() / newRating.getNumVotes());
+        userFromDB.setRating(newRating);
         userRepository.save(userFromDB);
     }*/
 }

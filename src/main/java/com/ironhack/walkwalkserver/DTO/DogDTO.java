@@ -17,4 +17,5 @@ public class DogDTO {
     private String catFriendly;
     private String childFriendly;
     private String energy;
+
 }

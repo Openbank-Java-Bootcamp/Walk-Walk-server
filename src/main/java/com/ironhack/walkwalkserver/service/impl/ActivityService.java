@@ -67,11 +67,11 @@ public class ActivityService implements ActivityServiceInterface {
 
     public void update(Long id, ActivityWithoutDogsDTO activity){
         Optional<User> creator = userRepository.findById(activity.getCreatorId());
-        boolean election = !activity.isChosen();
+        boolean election = false;
         User assigned = null;
         if(activity.getAssignedId() != null){
             assigned = userRepository.findById(activity.getAssignedId()).get();
-            activity.isChosen();
+            election =true;
         }
         Activity activityFromDB = activityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Activity not found"));
         activityFromDB.setCity(activity.getCity());
