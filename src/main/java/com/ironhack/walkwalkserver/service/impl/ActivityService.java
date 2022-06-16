@@ -54,6 +54,7 @@ public class ActivityService implements ActivityServiceInterface {
         newActivity.setCreator(creator.get());
         newActivity.setAssigned(assigned);
         newActivity.setDogs(dogRepository.findAllById(activity.getDogsId()));
+        newActivity.setActivityDate(activity.getActivityDate());
         activityRepository.save(newActivity);
         List<Dog> dogs = newActivity.getDogs();
         for(Dog dog : dogs){
@@ -79,6 +80,7 @@ public class ActivityService implements ActivityServiceInterface {
         activityFromDB.setCreator(creator.get());
         activityFromDB.setAssigned(assigned);
         activityFromDB.setChosen(election);
+        activityFromDB.setActivityDate(activity.getActivityDate());
         activityRepository.save(activityFromDB);
     }
 
