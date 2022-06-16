@@ -1,4 +1,4 @@
-/*package com.ironhack.walkwalkserver.model;
+package com.ironhack.walkwalkserver.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,4 +14,4 @@ public class Rating {
     private double numVotes;
     private double totalScore;
     private double average;
-}*/
+}
